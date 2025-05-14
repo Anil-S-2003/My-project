@@ -1,0 +1,299 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background:  linear-gradient(135deg, white, #e0e0e0);
+}
+
+.header-bar {
+  background: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  border-radius: 10px 10px 0 0;
+}
+
+.top-btn {
+  background: linear-gradient(to right, #9b59b6, #8e44ad);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 16px;
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-btn:hover {
+  background: linear-gradient(to right, #8e44ad, #9b59b6);
+}
+
+.logout {
+  background: #f44336;
+}
+
+.logout:hover {
+  background: #d32f2f;
+}
+
+.chat-container {
+  max-width: 500px;
+  margin: 20px auto;
+  background: #282d34;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow-anchor: none;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  margin: 6px 0;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Fixed width for all bubbles */
+  height: 60px; /* Fixed height for all bubbles */
+  box-sizing: border-box;
+}
+
+.sent {
+  background-color: #5fa1c3;
+  align-self: flex-end;
+}
+
+.received {
+  background-color: #f533b1;
+  align-self: flex-start;
+}
+
+.text-message {
+  /* Style for text-only messages */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-message {
+  display: flex;
+  align-items: center; /* Keep this */
+  gap: 10px;
+  background-color: #86ebd3;;
+  padding: 8px 12px;
+  border-radius: 1px;
+  border: 1px solid black;
+  width: fit-content;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.file-icon {
+  font-size: 24px;
+  color: #9000ce;
+}
+
+.file-name {
+  font-weight: bold;
+  color: #8e44ad;
+  margin-bottom: 4px;
+}
+
+.copy-text {
+  font-size: 12px;
+  color: #8e44ad;
+  text-align: right;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.copy-text:hover {
+  text-decoration: underline;
+}
+
+.message-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 0;
+}
+
+.message-row textarea {
+  flex: 1;
+  height: 40px;
+  resize: none;
+  padding: 10px 16px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+  font-size: 14px;
+}
+
+.message-row textarea:focus {
+  outline: none;
+  border-color: #a0a0a0;
+}
+
+.icon-btn, .send-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 16px;
+  border: none;
+  color: white;
+  background: linear-gradient(to right, #9b59b6, #8e44ad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.icon-btn:hover, .send-btn:hover {
+  background: linear-gradient(to right, #8e44ad, #9b59b6);
+}
+
+.send-btn {
+  margin-left: 10px;
+}
+
+.form-card {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.form-card h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.form-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form-card input:focus {
+  outline: none;
+  border-color: #a0a0a0;
+}
+
+.form-card button {
+  background: linear-gradient(to right, #9b59b6, #8e44ad);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.form-card button:hover {
+  background: linear-gradient(to right, #8e44ad, #9b59b6);
+}
+
+.hidden {
+  display: none;
+}
+
+.gradient-bg {
+  background:  linear-gradient(135deg, white, #f0f0f0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.file-details {
+  display: flex;
+  flex-direction: column; /* Stack file name and copy button */
+  justify-content: center; /* Center them vertically within file-details */
+}
+
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.sent-wrapper {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.received-wrapper {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.sender-usn {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fffbfb;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+/* Sent and Received Text Messages */
+.sent-text {
+  background-color: #5ec2f1; /* Green */
+  border-radius: 8px;
+  align-self: flex-end;
+}
+
+.received-text {
+  background-color: #db3cde; /* Sky Blue */
+  align-self: flex-start;
+  border-radius: 8px;
+}
+
+/* Sent and Received File Messages */
+.sent-file, .received-file {
+  background-color: rgb(172, 188, 189);  /* White for both sent and received files */
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 1px;
+  border: 1px solid #141111;
+  border-radius: 5px;
+}
+
+.received-file {
+  align-self: flex-start;
+}

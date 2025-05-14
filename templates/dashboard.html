@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+  <div class="header-bar">
+    <span>Welcome {{ usn }}</span>
+    <div>
+      <a href="https://www.jdoodle.com/python3-programming-online" target="_blank">
+        <button class="top-btn">Code Editor</button>
+      </a>
+      <a href="/">
+        <button class="top-btn logout">Logout</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="chat-container">
+    <div class="messages" id="messages">
+      {% for msg in messages %}
+        <div class="message-wrapper {{ 'sent-wrapper' if msg.sender == usn else 'received-wrapper' }}">
+          <div class="sender-usn">{{ msg.sender }}</div>
+          <div class="chat-bubble 
+            {% if msg.filename == '(message only)' %}
+              {{ 'sent-text' if msg.sender == usn else 'received-text' }}
+            {% else %}
+              {{ 'sent-file' if msg.sender == usn else 'received-file' }}
+            {% endif %}
+          ">
+            {% if msg.filename != '(message only)' %}
+              <div class="file-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><style>svg{fill:#8e44ad}</style><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM256 256c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32V256z"/></svg>
+              </div>
+              <div class="file-details">
+                <div class="file-name">{{ msg.filename }}</div>
+                <div class="copy-text" onclick="copyToClipboard(`{{ msg.code }}`)">Copy</div>
+              </div>
+            {% else %}
+              <div class="text-message">{{ msg.code }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <form id="chatForm" action="/send_message" method="post" enctype="multipart/form-data" class="message-row">
+      <textarea id="messageBox" name="message" placeholder="Message..."></textarea>
+      <input type="file" name="codefile" accept=".py" id="fileInput" style="display:none;" onchange="handleFileSelection(event)">
+      <label for="fileInput" class="icon-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><style>svg{fill:#ffffff}</style><path d="M416 208c0 45.9-149.3 268.9-391.5 304C22.9 511.6 12.7 512 8 512S0 507.1 0 503.5v-48.7c0-4.3 2.7-8.3 6.8-10.2C10.5 443.6 127.4 223 248.8 212.2c18.5-1.6 18.5-4.4 0-6.1C127.4 195 10.5-25.6 6.8-34.9C2.7-36.7 0-40.8 0-45.1V16.5c0-4.5 4-8.4 8-8.4s14.9.4 22.9 4.8C266.2 165.1 416 328.1 416 208z"/></svg>
+      </label>
+      <button type="submit" class="send-btn" onclick="handleSend(event)">➤</button>
+      <input type="hidden" name="usn" value="{{ usn }}">
+      <input type="hidden" name="projectName" value="{{ projectName }}">
+    </form>
+  </div>
+
+<script>
+  const messagesContainer = document.querySelector('.messages');
+
+  function scrollToBottom() {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  scrollToBottom();
+
+  function addNewMessage(newMessageHTML) {
+    messagesContainer.innerHTML += newMessageHTML;
+    scrollToBottom();
+  }
+</script>
+</body>
+</html>

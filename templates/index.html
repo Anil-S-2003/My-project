@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Create Team</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script>
+    function toggleForm() {
+      document.getElementById('loginForm').classList.toggle('hidden');
+      document.getElementById('createForm').classList.toggle('hidden');
+    }
+  </script>
+</head>
+<body>
+  <div class="gradient-bg">
+    <div class="form-container">  <div class="form-card">
+        <form id="loginForm" action="/login" method="POST">
+          <h2>Login</h2>
+          <input type="text" name="projectName" placeholder="Project Name" required>
+          <input type="text" name="usn" placeholder="USN" required>
+          <button type="submit" class="primary-btn">Login</button>
+          <button type="button" onclick="toggleForm()" class="primary-btn create-team-btn">Create Team</button>
+        </form>
+
+        <form id="createForm" action="/create_team" method="POST" class="hidden">
+          <h2>Create Team</h2>
+          <input type="text" name="projectName" placeholder="Project Name" required>
+          <input type="text" name="usns" placeholder="USN 1 (required)" required>
+          <input type="text" name="usns" placeholder="USN 2 (required)" required>
+          <input type="text" name="usns" placeholder="USN 3 (required)" required>
+          <input type="text" name="usns" placeholder="USN 4 (required)" required>
+          <input type="text" name="usns" placeholder="USN 5 (optional)">
+          <button type="submit" class="primary-btn">Submit Team</button>
+          <button type="button" onclick="toggleForm()" class="primary-btn back-to-login-btn">Back to Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
