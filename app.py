@@ -11,7 +11,9 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # MongoDB connection from environment variable
-mongo_url = os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
+mongo_url = os.environ.get("MONGO_URI")  # Remove default for production
+if not mongo_url:
+    raise ValueError("MONGO_URI environment variable is not set.")
 client = MongoClient(mongo_url)
 db = client['code_collab']
 teams = db.teams
@@ -74,12 +76,12 @@ def send_message():
             'code': code_content
         })
 
-        return redirect(url_for('login'), code=307)
+        return redirect(url_for('login'))  # Redirect to login, but it's usually a GET route.
     except Exception as e:
         logging.exception("Error in /send_message")
         return f"Message failed: {str(e)}", 500
 
 if __name__ == '__main__':
-    os.makedirs('uploads', exist_ok=True)
+    os.makedirs('uploads', exist_ok=True)  # Ensure uploads folder exists
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
